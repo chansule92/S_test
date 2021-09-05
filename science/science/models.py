@@ -2,10 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class result(models.Model):
-    survey_idx = models.AutoField(primary_key=True)
+class user_list(models.Model):
     user = models.CharField(max_length=10)
-    question_1 = models.IntegerField(1)
 
-    def __str__(self):
-        return self.text
+class result(models.Model):
+    user = models.CharField(max_length=10)
+    question = models.CharField(max_length=10)
+    answer = models.CharField(max_length=10)
+    date = models.DateTimeField()

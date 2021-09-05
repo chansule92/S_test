@@ -1,13 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import result
+from .models import user_list
 
 def home(request):
     if request.method == 'POST':
-        result=result()
-        result.text=request.POST['text']
-        result.save()
-        return redirect('result')
+        post=user_list()
+        post.user=request.POST.get('user')
+        post.save()
+        return redirect(start)
     else:
-        result=result.objects.all()
-        return render(request, 'science/start.html',{'result':result})
+        post=user_list.objects.all()
+        return render(request, 'science/home.html',{'post':post})
+
+def start(request,id):
+
+        return render(request, 'science/start.html')
