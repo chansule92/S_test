@@ -1,5 +1,10 @@
 학생의 의지인가요?
-<button type='button' onclick="location.href='/science/1_1/'">
+<form method='post'>
+  {% csrf_token %}
+  <button type='submit' id='answer' value='y'>
   Yes</button>
-<button type='button' onclick="location.href='/science/2_1/'">
+  <button type='submit' id='answer' value='n'>
   No</button>
+</form>
+  <br>
+{{user}}
