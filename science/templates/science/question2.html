@@ -1,4 +1,4 @@
-학생의 의지인가요?
+특수 목적이 있나요?(과고진학, 의대진학 등)
 <form method='post'>
   {% csrf_token %}
   <button type='submit' name='answer' id='answer' value='y'>
@@ -6,5 +6,3 @@
   <button type='submit' name='answer' id='answer' value='n'>
   No</button>
 </form>
-  <br>
-{{user}}
