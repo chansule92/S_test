@@ -16,24 +16,159 @@ def home(request):
 def start(request):
         user=user_list.objects.values().last()
         if request.method == 'POST':
-            result = result()
-            result.user_id=user[0]
-            result.user=user[1]
-            result.question=1
-            result.answer=request.POST.get('answer')
-            result.save()
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='start'
+            post.answer=request.POST.get('answer')
+            post.save()
             if request.POST.get('answer')=='y':
-                redirect(second1)
+                return redirect(question0)
             elif request.POST.get('answer')=='n':
-                redirect(second2)
+                return redirect(question1)
 
         content={'user':user}
         return render(request, 'science/start.html',content)
 
-def second1(request):
+def question0(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='0'
+            post.answer=request.POST.get('answer')
+            post.save()
+            if request.POST.get('answer')=='y':
+                return redirect(final0)
+            elif request.POST.get('answer')=='n':
+                return redirect(question1_1)
 
-    return render(request, 'science/1-2.html')
+        return render(request, 'science/question0.html')
 
-def second2(request):
+def question1(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='1'
+            post.answer=request.POST.get('answer')
+            post.save()
+            if request.POST.get('answer')=='y':
+                return redirect(question1_1)
+            elif request.POST.get('answer')=='n':
+                return redirect(question2)
+        return render(request, 'science/question1.html')
 
-    return render(request, 'science/2-1.html')
+def question1_1(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='1_1'
+            post.answer=request.POST.get('answer')
+            post.save()
+            if request.POST.get('answer')=='y':
+                return redirect(final1)
+            elif request.POST.get('answer')=='n':
+                return redirect(question2_1)
+        return render(request, 'science/question1_1.html')
+
+
+def question2(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='2'
+            post.answer=request.POST.get('answer')
+            post.save()
+            if request.POST.get('answer')=='y':
+                return redirect(question2_1)
+            elif request.POST.get('answer')=='n':
+                return redirect(final4)
+        return render(request, 'science/question2.html')
+
+def question2_1(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='2_1'
+            post.answer=request.POST.get('answer')
+            post.save()
+            if request.POST.get('answer')=='y':
+                return redirect(final2)
+            elif request.POST.get('answer')=='n':
+                return redirect(final3)
+        return render(request, 'science/question2_1.html')
+
+def final0(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='f0'
+            post.answer=request.POST.get('answer')
+            post.save()
+            return redirect(home)
+
+        return render(request, 'science/final0.html')
+
+def final1(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='f1'
+            post.answer=request.POST.get('answer')
+            post.save()
+            return redirect(home)
+
+        return render(request, 'science/final1.html')
+
+
+def final2(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='f2'
+            post.answer=request.POST.get('answer')
+            post.save()
+            return redirect(home)
+
+        return render(request, 'science/final2.html')
+
+def final3(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='f3'
+            post.answer=request.POST.get('answer')
+            post.save()
+            return redirect(home)
+
+        return render(request, 'science/final3.html')
+
+def final4(request):
+        user=user_list.objects.values().last()
+        if request.method == 'POST':
+            post = result()
+            post.user_id=user['id']
+            post.user=user['user']
+            post.question='f4'
+            post.answer=request.POST.get('answer')
+            post.save()
+            return redirect(home)
+
+        return render(request, 'science/final4.html')

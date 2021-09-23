@@ -7,8 +7,8 @@ class user_list(models.Model):
     user = models.CharField(max_length=10)
 
 class result(models.Model):
-    user_id = models.ForeignKey(user_list, on_delete=models.CASCADE)
+    user_id = models.IntegerField(max_length=10)
     user = models.CharField(max_length=10)
     question = models.CharField(max_length=10)
     answer = models.CharField(max_length=10)
-    date = models.DateTimeField()
+    date = models.DateTimeField(auto_now_add=True, blank=True)
