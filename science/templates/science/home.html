@@ -4,3 +4,24 @@ NAME
     <textarea  name="user" id='user'></textarea>
     <input type="submit" value='확인'>
 </form>
+
+
+</br>
+<form method='get' action="">
+  {% csrf_token %}
+  <div class=" justify-content-end my-3">
+      <div class="col-4 input-group">
+          <input type="text" name='word' id='word'>
+          <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">찾기</button>
+          </div>
+      </div>
+  </div>
+</form>
+
+<table width=50% border=0><td></td><td><p class="a">id</a></td><td><p class="a">user</a></td>
+{% for list in list %}
+<tr><td></td><td><a href="/science/outcome/{{list.id}}">{{list.id}}</a></td><td>{{list.user}}</td></tr>
+
+{% endfor %}
+</table>

@@ -12,7 +12,16 @@
 
 <table width=50% border=0><td></td><td><p class="a">id</a></td><td><p class="a">user</a></td>
 {% for list in list %}
-<tr><td></td><td><a href=#>{{list.id}}</a></td><td>{{list.user}}</td></tr>
+<tr><td></td><td><a href="/science/outcome/{{list.id}}">{{list.id}}</a></td><td>{{list.user}}</td></tr>
+
+{% endfor %}
+</table>
+
+{{content.0.user_id}}</br>
+{{content.0.user}}
+<table width=50% border=0><td></td><td><p class="a">question</a></td><td><p class="a">answer</a></td><td></td>
+{% for content in content %}
+<tr><td></td><td>{{content.question}}</a></td><td>{{content.answer}}</td><td>{{content.date}}</td></tr>
 
 {% endfor %}
 </table>
