@@ -15,5 +15,5 @@ urlpatterns = [
     path('final2/', views.final2, name='final2'),
     path('final3/', views.final3, name='final3'),
     path('final4/', views.final4, name='final4'),
-    path('outcome/', views.outcome, name='outcome'),
+    path('outcome/<int:id>/', views.outcome, name='outcome'),
 ]

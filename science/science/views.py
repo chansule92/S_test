@@ -5,6 +5,12 @@ from django.db.models import Q
 
 
 def home(request):
+    list=None
+    query=None
+    if 'word' in request.GET:
+        query=request.GET.get('word')
+        list=user_list.objects.values().filter(Q(id__icontains=query)|Q(user__icontains=query))
+
     if request.method == 'POST':
         post=user_list()
         post.user=request.POST.get('user')
@@ -13,7 +19,23 @@ def home(request):
         return redirect(start)
     else:
         post=user_list.objects.values_list()
-    return render(request, 'science/home.html',{'post':post})
+
+    a = len(result.objects.filter(answer = 'f').values_list('user_id'))
+    complete_user=[]
+    for i in range(0,a):
+        complete_user.append(result.objects.filter(answer = 'f').values_list('user_id')[i][0])
+
+    b = len(user_list.objects.values_list())
+    all_user = []
+    for i in range(0,b):
+        all_user.append(user_list.objects.values_list('id')[i][0])
+
+    fail_user= set(all_user) - set(complete_user)
+    for i in fail_user:
+        user_list.objects.filter(id = i).delete()
+        result.objects.filter(user_id = i).delete()
+
+    return render(request, 'science/home.html', {'post':post, 'list':list })
 
 def start(request):
     user=user_list.objects.values().last()
@@ -174,11 +196,12 @@ def final4(request):
 
     return render(request, 'science/final4.html')
 
-def outcome(request):
+def outcome(request,id):
     list=None
     query=None
     if 'word' in request.GET:
         query=request.GET.get('word')
         list=user_list.objects.values().filter(Q(id__icontains=query)|Q(user__icontains=query))
-    content = 0
+
+    content = result.objects.filter(user_id = id).values()
     return render(request, 'science/outcome.html',{'content':content, 'list':list})
